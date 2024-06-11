@@ -1,0 +1,107 @@
+<!-- Include Header -->
+{% include "header.html" %}
+<div class="container mt-5">
+    <h1 class="mb-4">Video Detection</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <video id="liveVideo" width="100%" height="auto" autoplay></video>
+        </div>
+        <div class="col-md-6">
+            <video id="recordedVideo" width="100%" height="auto" controls></video>
+            <div class="mt-3">
+                <button id="recordButton" class="btn btn-primary mr-2" onclick="startRecording()">Record</button>
+                <button id="stopButton" class="btn btn-danger mr-2" onclick="stopRecording()" disabled>Stop</button>
+                <button id="playRecordedButton" class="btn btn-success" onclick="playRecordedVideo()"
+                    disabled>Play</button>
+                <button id="saveButton" class="btn btn-info mr-2" onclick="saveRecordedVideo()" disabled>Save</button>
+                <button id="resetButton" class="btn btn-secondary ml-2" onclick="resetPage()">Reset</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let liveVideo = document.getElementById('liveVideo');
+    let recordedVideo = document.getElementById('recordedVideo');
+    let recordButton = document.getElementById('recordButton');
+    let stopButton = document.getElementById('stopButton');
+    let playRecordedButton = document.getElementById('playRecordedButton');
+    let saveButton = document.getElementById('saveButton');
+    let resetButton = document.getElementById('resetButton');
+    let stream;
+    let mediaRecorder;
+    let chunks = [];
+
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function (videoStream) {
+            stream = videoStream;
+            liveVideo.srcObject = videoStream;
+            liveVideo.play();
+        })
+        .catch(function (err) {
+            console.error('Error accessing media devices.', err);
+        });
+
+    function startRecording() {
+        recordButton.disabled = true;
+        stopButton.disabled = false;
+        saveButton.disabled = true;
+        playRecordedButton.disabled = true;
+
+        mediaRecorder = new MediaRecorder(stream);
+        mediaRecorder.ondataavailable = function (event) {
+            chunks.push(event.data);
+        };
+
+        mediaRecorder.onstop = function () {
+            let blob = new Blob(chunks, { 'type': 'video/mp4' });
+            chunks = [];
+            recordedVideo.src = URL.createObjectURL(blob);
+            recordedVideo.play();
+            playRecordedButton.disabled = false;
+            saveButton.disabled = false;
+        };
+
+        mediaRecorder.start();
+    }
+
+    function stopRecording() {
+        recordButton.disabled = false;
+        stopButton.disabled = true;
+
+        if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+            mediaRecorder.stop();
+        }
+    }
+
+    function playRecordedVideo() {
+        recordedVideo.play();
+    }
+
+    function saveRecordedVideo() {
+        recordedVideo.pause();
+        let blob = new Blob(chunks, { 'type': 'video/mp4' });
+        let formData = new FormData();
+        formData.append('video', blob, 'recordedVideo.mp4');
+
+        fetch('/detect', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Video saved successfully:', data.video_path);
+                resetPage();
+            })
+            .catch(error => {
+                console.error('Error saving video:', error);
+            });
+    }
+
+    function resetPage() {
+        window.location.reload();
+    }
+</script>
+
+<!-- Include Footer -->
+{% include "footer.html" %}

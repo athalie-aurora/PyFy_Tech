@@ -1,0 +1,5 @@
+Algoritma utama yang digunakan adalah algoritma Delaunay
+Triangulation untuk pemetaan geometris antara landmark wajah yang
+berbasis pada prinsip yang dikenal sebagai “the Delaunay criterion” yang
+menetapkan aturan untuk menggunakan pertimbangan geometris untuk
+menentukan pilihan terkoneksi.

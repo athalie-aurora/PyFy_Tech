@@ -1,0 +1,45 @@
+<!-- Include Header -->
+{% include "header.html" %}
+
+
+<div class="container mt-5">
+    <h1>Image Classifier</h1>
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="imagefile">Pilih dokumen untuk diunggah</label>
+            <input type="file" name="imagefile" id="imagefile">
+        </div>
+        <button type="submit">Unggah</button>
+    </form>
+    {% if image_path %}
+    <div class="mt-5">
+        <h3>Gambar yang diunggah:</h3>
+        <img src="{{ image_path }}" alt="Uploaded Image">
+    </div>
+    {% endif %}
+    {% if prediction %}
+    <div class="mt-3">
+        <h4>Prediksi:</h4>
+        <p>{{ prediction }}</p>
+    </div>
+    {% endif %}
+</div>
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<!-- Include Footer -->
+{% include "footer.html" %}

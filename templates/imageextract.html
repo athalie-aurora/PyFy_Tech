@@ -1,0 +1,45 @@
+<!-- Include Header -->
+{% include "header.html" %}
+
+<div class="container mt-5">
+    <h1>Ekstraksi Teks dari Gambar</h1>
+    <form action="/extract" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="imagefile">Pilih gambar untuk diunggah</label>
+            <input type="file" name="image" id="imagefile">
+        </div>
+        <button type="submit">Ekstrak Teks</button>
+    </form>
+    {% if image_path %}
+    <div class="mt-5">
+        <h3>Gambar yang diunggah:</h3>
+        <img src="{{ image_path }}" alt="Uploaded Image">
+    </div>
+    {% endif %}
+    {% if extracted_text %}
+    <div class="mt-3">
+        <h4>Hasil Ekstraksi Teks:</h4>
+        <p>{{ extracted_text }}</p>
+        {% if text_file_url %}
+        <a href="{{ text_file_url }}" download="extracted_text.txt" class="btn btn-primary">Unduh Teks</a>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<!-- Include Footer -->
+{% include "footer.html" %}

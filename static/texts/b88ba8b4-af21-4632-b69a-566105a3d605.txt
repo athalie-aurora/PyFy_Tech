@@ -1,0 +1,21 @@
+The fastest way to learn
+
+OpenCV, Object ee,
+Detection, and Deep
+Learning.
+
+— Discover the “hidden” face detector in OpenCV.
+
+— Develop a super-simple object tracker.
+
+— Use neural networks for object detection.
+
+Learn how to do all this and more for free in 17 simple to
+follow, obligation free email lessons starting today.
+“PylmageSearch’s course converted me from a Python
+beginner to a published computer vision practitioner.” — Dr.
+
+Paul Lee
+
+START YOUR FIRST LESSON
+
