@@ -17,21 +17,19 @@ PyFy Tech adalah platform multimedia berbasis Flask yang memungkinkan pengguna u
    - Pengguna mengunggah gambar melalui antarmuka web.
    - Sistem melakukan praproses pada gambar dan menggunakan model VGG16 untuk melakukan prediksi objek dalam gambar.
    - Hasil prediksi ditampilkan dengan label dan probabilitasnya.
-![Screenshot 2024-06-10 234318](https://github.com/athalie-aurora/PyFy_Tech/assets/119656945/7d190e30-9ccc-4237-9448-e24599a8d33e)
+![Screenshot 2024-06-10 234318](https://github.com/athalie-aurora/PyFy_Tech/assets/119656945/cb15b3b8-b01b-4ab2-8903-bcee65fffb6a)
 
 2. **Ekstraksi Teks dari Gambar**:
    - Pengguna mengunggah gambar yang berisi teks.
    - Sistem menggunakan PyTesseract untuk mengekstraksi teks dari gambar.
    - Teks yang diekstraksi dapat diunduh dalam format teks.
-![Screenshot 2024-06-10 234356](https://github.com/athalie-aurora/PyFy_Tech/assets/119656945/b79e6076-73b7-476e-a8c6-c3095fb64e44)
-
+![Screenshot 2024-06-10 234422](https://github.com/athalie-aurora/PyFy_Tech/assets/119656945/ed87f87a-a4a4-4764-9fd6-b4b037aafd34)
 
 
 3. **Deteksi Video**:
    - Pengguna dapat merekam video menggunakan kamera komputer.
    - Video yang direkam disimpan dan dapat diunduh oleh pengguna.
 ![Screenshot 2024-06-11 201322](https://github.com/athalie-aurora/PyFy_Tech/assets/119656945/e3b3f72f-fcd3-4538-807b-e52b2b284e7f)
-
 
 
 ## Instalasi
